@@ -1,0 +1,35 @@
+Notes because I have legit memory problems
+
+import random
+
+Create Dictionary for Physical Attributes
+	Keys are Phenotypes (Appearance)
+	Values are Genotypes (Gene Blueprint)
+
+example: 
+	furDict = {'Black': 'B', 'Brown':'b', 'White': 'W', 'Wheat':'w'}
+
+Create Dictionary for Combination results.
+	Keys are the color result
+	Values are the two genes together.
+
+example:
+	furResults = {'Black': ['BB','Bb'], 'Caramel':['wb', 'bw'], 'Brown':['bb'], 'White'['Ww', 'wW', 'Wb', 'bW'], 'Grey':['WB', 'BW']}
+
+To create gene, combine two random values from the fur dictionary.
+	
+example:
+	furDNA = random.choice(list(furDict.values())) + random.choice(list(furDict.values()))
+	result will be a string like 'wb'
+
+To give this gene a name, check to see where/if it exists in the results dictionary and then print the key of the matching value.
+
+example: for key in furResults.keys():
+		if furDNA in furResults[key]:
+			print(key)
+
+~~~~~~~~~~~~~
+
+Simplify things with variables
+
+rFurAllele = random.choice(list(furDict.values()))
