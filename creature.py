@@ -2,6 +2,8 @@
 # creature.py
 
 import random
+import datetime
+import time
 
 eyeDict = {'Red': 'R', 'Rose': 'r', 'Brown': 'B',
            'Blue': 'b', 'Grey': 'G', 'Green': 'g'}
@@ -20,6 +22,7 @@ class Creature:
         # Generate profile of genetic information
         self.name = 'Rando'
         self.sex = random.choice(sex)
+        self.DOB = datetime.datetime.now().strftime("%Y/%m/%d %H:%M")
         # Create genes from two randomly selected values from the dictionary
         self.furGene = random.choice(
             list(furDict.values())) + random.choice(list(furDict.values()))
@@ -43,7 +46,7 @@ class Creature:
         # Color RNG based on respective gene
         getFurColor(self, self.furGene)
         getEyeColor(self, self.eyeGene)
-        getManeColor(self, self.maneColor)
+        getManeColor(self, self.maneGene)
         getHornShow(self, self.hornToggled)
         getHornType(self, self.hornGene)
         getName(self, self.sex)
@@ -59,6 +62,7 @@ class Baby:
         self.sex = random.choice(sex)
         self.name = input("Congrats, it's a " + self.sex +
                           "! What would you like to name the baby? ")
+        self.DOB = datetime.datetime.now().strftime("%Y/%m/%d %H:%M")
         self.parent1 = parent1.name
         self.parent2 = parent2.name
         # Generate gene genotype with parents' values
@@ -73,11 +77,11 @@ class Baby:
         self.hornToggled = random.choice(
             parent1.hornGene) + random.choice(parent2.hornGene)
         # Default colors in case getFunctions fail
-        self.furColor = "Brown"
-        self.eyeColor = "Green"
-        self.maneColor = "White"
-        self.hornShow = "Yes"
-        self.hornShape = "Curved"
+        self.furColor = "Pink"
+        self.eyeColor = "Olve"
+        self.maneColor = "Chartreause"
+        self.hornShow = "Maybe"
+        self.hornShape = "Circle"
         # Functions to retrieve genes' phenotypes
         getEyeColor(self, self.eyeGene)
         getFurColor(self, self.furGene)
@@ -98,7 +102,8 @@ def getPedigree(name):
         print(name.name + " has horns and they are " + name.hornShape + ".")
     else:
         print(name.name + " has no horns.")
-    print("Parents: " + name.parent1 + ", " + name.parent2)
+    print("Parents: " + name.parent1 + ", " +
+          name.parent2 + ".\n" + "Born on: " + name.DOB)
 
 
 def getEyeColor(creature, gene):
