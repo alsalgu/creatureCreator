@@ -30,6 +30,4 @@ example: for key in furResults.keys():
 
 ~~~~~~~~~~~~~
 
-Simplify things with variables
 
-rFurAllele = random.choice(list(furDict.values()))
