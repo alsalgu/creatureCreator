@@ -16,10 +16,10 @@ babyCreatures = []
 
 
 class Creature:
-    def __init__(self, name, sex):
+    def __init__(self):
         # Generate profile of genetic information
-        self.name = name
-        self.sex = sex
+        self.name = 'Rando'
+        self.sex = random.choice(sex)
         # Create genes from two randomly selected values from the dictionary
         self.furGene = random.choice(
             list(furDict.values())) + random.choice(list(furDict.values()))
@@ -46,8 +46,12 @@ class Creature:
         getManeColor(self, self.maneColor)
         getHornShow(self, self.hornToggled)
         getHornType(self, self.hornGene)
+        getName(self, self.sex)
         # Add creature to list for easy access later.
         allCreatures.append(self.name)
+        print("A " + self.sex + " creature named " +
+              self.name + " has been hatched!")
+        return
 
 
 class Baby:
@@ -201,3 +205,26 @@ def getHornType(creature, gene):
         creature.hornShape = 'Spiral'
     if gene == 'cc':
         creature.hornShape = 'Straight'
+
+
+def getName(creature, sex):
+    # Populate Names
+    fNameFile = open("f-names.txt").read()
+    fNamesAll = fNameFile[0:]
+    fNames = fNamesAll.split()
+    mNameFile = open("m-names.txt").read()
+    mNamesAll = mNameFile[0:]
+    mNames = mNamesAll.split()
+    uNameFile = open("u-names.txt").read()
+    uNamesAll = uNameFile[0:]
+    uNames = uNamesAll.split()
+    if sex == "Female":
+        outcome = []
+        outcome.extend(uNames)
+        outcome.extend(fNames)
+        creature.name = random.choice(outcome)
+    else:
+        outcome = []
+        outcome.extend(uNames)
+        outcome.extend(mNames)
+        creature.name = random.choice(outcome)
